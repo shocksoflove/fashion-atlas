@@ -32,21 +32,16 @@
     /* PART card */
     .part { background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow); margin:18px 0; overflow:hidden; }
 
-    /* Part header toggles eras */
-    details.part-toggle { margin:0; }
-    summary.part-top {
+    /* Part header / summary */
+    .part-top {
       background: var(--part-header-bg); 
-      padding:10px 12px; 
-      border-bottom:1px dashed rgba(0,0,0,0.08);
-      cursor:pointer;
-      user-select:none;
-      outline:none;
+      padding:10px 12px; border-bottom:1px dashed rgba(0,0,0,0.08);
     }
     .part-title { margin:0; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--text); }
     .part-summary { margin:6px 0 0 0; font-size:13px; color:var(--muted); font-weight:400; }
 
     /* Eras inside part card */
-    .eras { padding:12px; }
+    .eras { padding:12px; display:none; }
     details.era { margin:8px 0; border-radius:10px; overflow:hidden; }
     summary.era { display:block; padding:10px 12px; margin:0; font-size:14px; font-weight:600; color:var(--text); background:var(--card-bg); cursor:pointer; border-radius:8px; user-select:none; outline:none; transition:background .22s ease, color .22s ease; }
     summary.era:hover { background:var(--accent-hover); color:#111; }
@@ -58,7 +53,21 @@
     .era-body p { margin:0 0 8px 0; }
 
     .imglink { font-size:13px; color: #0e5b6e; text-decoration:underline; font-weight:600; }
+
   </style>
+  <script>
+    // Toggle eras when part header is clicked
+    document.addEventListener("DOMContentLoaded", function(){
+      const parts = document.querySelectorAll(".part");
+      parts.forEach(part => {
+        part.querySelector(".part-top").addEventListener("click", () => {
+          const eras = part.querySelector(".eras");
+          if (eras.style.display === "block") { eras.style.display = "none"; }
+          else { eras.style.display = "block"; }
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="wrap">
@@ -67,11 +76,11 @@
     </header>
 
     <!-- PART 1 -->
-    <details class="part-toggle">
-      <summary class="part-top">
+    <section class="part">
+      <div class="part-top">
         <div class="part-title">PRE-MODERN / ANTIQUITY</div>
         <div class="part-summary">Core systems of drape, civic dress, and early tailoring</div>
-      </summary>
+      </div>
       <div class="eras">
         <details class="era">
           <summary class="era">Ancient Egypt (c. 3000 BCE – 300 BCE)</summary>
@@ -90,14 +99,14 @@
           </div>
         </details>
       </div>
-    </details>
+    </section>
 
     <!-- PART 2 -->
-    <details class="part-toggle">
-      <summary class="part-top">
+    <section class="part">
+      <div class="part-top">
         <div class="part-title">MEDIEVAL & EARLY MODERN EUROPE</div>
         <div class="part-summary">From ecclesiastical codes to secular court display; tailoring develops</div>
-      </summary>
+      </div>
       <div class="eras">
         <details class="era">
           <summary class="era">Early Medieval Europe (c. 500 – 1000)</summary>
@@ -107,7 +116,7 @@
           </div>
         </details>
       </div>
-    </details>
+    </section>
 
   </div>
 </body>
