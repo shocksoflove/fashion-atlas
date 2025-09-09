@@ -1,135 +1,268 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FASHION ATLAS</title>
+
+  <!-- Chic sans serif -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #F7E7CE; /* champagne */
-      color: #333;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
+    :root{
+      --page-bg: #FEFEFA;       /* overall background */
+      --part-bg: #F5FFFA;       /* part header background (wraps summary) */
+      --eras-bg: #FFFFFF;       /* white for era headers & body */
+      --muted: #7b7b7b;
+      --text: #111;
+      --accent-hover: #FBCEB1;  /* apricot hover */
+      --shadow: 0 6px 18px rgba(15,17,20,0.08);
+      --radius: 12px;
+      --maxw: 960px;
     }
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: white;
-      border-bottom: 2px solid #ddd;
-    }
-    header h1 {
-      font-size: 3rem;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      color: #111;
-    }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-    .part-header {
-      font-size: 1.8rem;
-      background: #FFF8E7; /* cosmic latte */
-      padding: 1rem;
-      margin: 2rem 0 0 0;
-      border-radius: 8px;
-      border: 2px dotted #ccc;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    .part-header:hover {
-      background: #FBCEB1; /* apricot */
-      color: white;
-    }
-    .part-summary {
-      padding: 0.8rem 1rem;
-      background: #fafafa;
-      margin: 0 0 1rem 0;
-      border-radius: 0 0 8px 8px;
-      border: 1px solid #ddd;
-      font-style: italic;
-    }
-    details {
-      margin: 0 0 1rem 0;
-      border: 2px dotted #ccc;
-      border-radius: 8px;
-      overflow: hidden;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-    }
-    summary {
-      cursor: pointer;
-      padding: 1rem 1.2rem;
-      font-size: 1.2rem;
-      font-weight: 600;
-      background: white; /* same as detail background */
-      color: #333;
-      outline: none;
-      user-select: none;
-      transition: all 0.3s ease;
-    }
-    summary:hover {
-      background: #FBCEB1; /* apricot hover */
-      color: white;
-    }
-    .era-content {
-      padding: 1rem 1.5rem;
-      background: white;
+
+    /* Global */
+    html,body { height:100%; margin:0; background:var(--page-bg); font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    .wrap { max-width:var(--maxw); margin:18px auto; padding:14px; box-sizing:border-box; }
+
+    /* Header */
+    header { text-align:center; padding:10px 8px; background:var(--page-bg); }
+    header h1 { margin:0; font-size:20px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text); }
+
+    /* PART block: header+summary share same bg and dashed line below */
+    .part { margin:18px 0; }
+    .part-top { background:var(--part-bg); border-radius:12px; padding:10px 12px; box-sizing:border-box; border-bottom:1px dashed rgba(0,0,0,0.08); }
+    .part-title { margin:0; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--text); }
+    .part-summary { margin:6px 0 0 0; font-size:13px; color:var(--muted); font-weight:400; }
+
+    /* Eras container (white card) */
+    .eras { background:var(--eras-bg); margin-top:12px; border-radius:var(--radius); padding:12px; box-shadow:var(--shadow); }
+    /* inside: each era as collapsible block with subtle spacing */
+    details.era { margin:8px 0; border-radius:10px; overflow:hidden; }
+    /* remove triangular marker and list styling */
+    summary.era { display:block; padding:10px 12px; margin:0; font-size:14px; font-weight:600; color:var(--text); background:var(--eras-bg); cursor:pointer; border-radius:8px; user-select:none; outline:none; transition:background .22s ease, color .22s ease, transform .08s ease; }
+    summary.era:hover { background:var(--accent-hover); color:#111; }
+    /* hide native marker in WebKit */
+    summary.era::-webkit-details-marker { display:none; }
+    /* also hide in Firefox if supported */
+    summary.era::marker { content: none; }
+
+    .era-body { padding:10px 14px; background:var(--eras-bg); color:var(--text); font-size:14px; line-height:1.55; border-radius:0 0 8px 8px; margin-top:6px; }
+    .era-body h4 { margin:6px 0 6px 0; font-size:13px; }
+    .era-body p { margin:0 0 8px 0; }
+
+    /* small image search link */
+    .imglink { font-size:13px; color: #0e5b6e; text-decoration:underline; font-weight:600; }
+
+    /* responsive adjustments */
+    @media (min-width:780px) {
+      .wrap { padding:18px; }
+      header h1 { font-size:22px; }
+      .part-title { font-size:16px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>FASHION ATLAS</h1>
-  </header>
+  <div class="wrap">
+    <header>
+      <h1>FASHION ATLAS</h1>
+    </header>
 
-  <main>
-    <!-- PART 1 -->
-    <h2 class="part-header">PRE-MODERN / ANTIQUITY</h2>
-    <p class="part-summary">Core systems of drape, civic dress, and early tailoring</p>
-
-    <details>
-      <summary>Ancient Egypt (c. 3000 BCE – 300 BCE)</summary>
-      <div class="era-content">
-        <p><strong>Silhouettes & Garments:</strong> Kalasiris sheath dresses for women; pleated linen kilts (shendyt) for men; wrapped and belted styles as signifiers of class.</p>
-        <p><strong>Materials & Textiles:</strong> Fine, sheer linen (status indicated by fineness and whiteness); gold thread for elite use.</p>
-        <p><strong>Accessories & Symbolism:</strong> Wigs, broad beaded collars (wesekh), kohl-rimmed eyes, symbolic crowns (Atef, Nemes).</p>
-        <p><strong>Historiography:</strong> Dress tied to religious and cosmic order (ma’at); nudity coded as innocence vs. luxury.</p>
-        <p><strong>Legacy Echoes:</strong> Sheer white columnar dresses (20th c. couture); Art Deco revival of Egyptian motifs post-Tutankhamun discovery (1920s).</p>
+    <!-- ========== PART: PRE-MODERN / ANTIQUITY ========== -->
+    <section class="part" aria-labelledby="part-antiquity">
+      <div class="part-top" id="part-antiquity">
+        <div class="part-title">PRE-MODERN / ANTIQUITY</div>
+        <div class="part-summary">Core systems of drape, civic dress, and early tailoring</div>
       </div>
-    </details>
 
-    <details>
-      <summary>Ancient Greece (c. 1200 BCE – 146 BCE)</summary>
-      <div class="era-content">
-        <p><strong>Silhouettes & Garments:</strong> Draped chitons (wool or linen), peplos, himation cloaks; modular and gender-fluid in cut.</p>
-        <p><strong>Materials & Textiles:</strong> Wool dominant; linen, later imported silk for elites.</p>
-        <p><strong>Accessories & Symbolism:</strong> Laurel wreaths, belts to alter silhouette; sandals with straps up the calf.</p>
-        <p><strong>Historiography:</strong> Classical ideal of proportion → Renaissance through Neoclassicism.</p>
-        <p><strong>Legacy Echoes:</strong> Bias-cut gowns (Vionnet); Olympic ceremonial dress; minimalist drape aesthetics in modernism.</p>
+      <div class="eras">
+        <!-- Ancient Egypt -->
+        <details class="era" open>
+          <summary class="era">Ancient Egypt (c. 3000 BCE – 300 BCE)</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Dress aligned with climate, religion, and social hierarchy. Clothing simple but symbolically rich—linen predominant; pleating and white as purity markers. Wigs and ornate collars signal rank.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Kalasiris (sheath dress) for women; shendyt kilt for men. Sheer, pleated linen with narrow profiles in elite contexts.</p>
+
+            <h4>Materials & Techniques</h4>
+            <p>Linen exclusively; fine bleaching and pleating technologies; beadwork and applied jewelry.</p>
+
+            <h4>Signifiers & Accessories</h4>
+            <p>Wigs, kohl makeup, broad collars of faience/gold, sandals—visual markers of status and ritual identity.</p>
+
+            <h4>Historiography</h4>
+            <p>Climate and religious symbolism explain the predominance of linen and the ritualized color palette. Later Hellenistic/Roman contact introduced new decorative vocabularies.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=ancient+egypt+fashion" target="_blank" rel="noopener">Image search — Ancient Egypt</a></div>
+          </div>
+        </details>
+
+        <!-- Ancient Greece -->
+        <details class="era" open>
+          <summary class="era">Ancient Greece (c. 1200 BCE – 146 BCE)</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Draped garments dominate; clothing made from rectangular panels folded and pinned. Line, proportion and the body's relationship to cloth are central aesthetic concerns.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Chiton, peplos, himation, chlamys. Belting and fibulae used to shape volume; length indicates activity and status.</p>
+
+            <h4>Materials & Techniques</h4>
+            <p>Wool and linen dominate; occasional luxury silk imports. Pleating, woven borders, and embroidered accents reserved for elites.</p>
+
+            <h4>Signifiers & Accessories</h4>
+            <p>Sandals, wreaths, fibula brooches, jewelry; color and ornament signify civic and ritual roles.</p>
+
+            <h4>Historiography</h4>
+            <p>Climate, loom technology and civic aesthetics produced the draped system; Roman cultural dominance later introduced more sewn, tailored garments.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=ancient+greece+fashion" target="_blank" rel="noopener">Image search — Ancient Greece</a></div>
+          </div>
+        </details>
+
+        <!-- Ancient Rome -->
+        <details class="era">
+          <summary class="era">Ancient Rome (c. 500 BCE – 476 CE)</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Roman dress merges drape and emerging tailoring; the toga is a clear legal/civic marker. Clothing becomes an instrument of social regulation.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Tunica (daywear), toga (ceremonial), stola/palla for women. Tunics increasingly sewn and shaped for urban life and mobility.</p>
+
+            <h4>Materials & Techniques</h4>
+            <p>Wool and linen are standard; luxury silks and brocades imported for elites. Dyeing (Tyrian purple) used as political signifiers.</p>
+
+            <h4>Signifiers & Accessories</h4>
+            <p>Toga variants indicate office/status; fibulae, footwear quality, jewelry used to communicate rank.</p>
+
+            <h4>Historiography</h4>
+            <p>Empire administration and law required visible markers of rank; clothing functions as civic identity. With imperial collapse, textile networks fragment and local/regional dress becomes dominant.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=ancient+rome+fashion" target="_blank" rel="noopener">Image search — Ancient Rome</a></div>
+          </div>
+        </details>
+
+        <!-- Early Medieval -->
+        <details class="era">
+          <summary class="era">Early Medieval Europe (c. 500 – 1000)</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Regionalization after Rome: clothing becomes pragmatic and layered. Germanic tailoring influences combine with Roman textile know-how; monasteries preserve weaving/dyeing knowledge.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Tunics, cloaks, layered garments. Belts and fibulae continue as closure devices; hoods and practical headgear become common with northern climates.</p>
+
+            <h4>Materials & Techniques</h4>
+            <p>Wool, linen; fur linings and leatherwork increase for warmth. Tablet-weaving and embroidered borders used as status details.</p>
+
+            <h4>Signifiers & Accessories</h4>
+            <p>Brooches, decorated belts, functional boots; Christian liturgical vestments begin to standardize ecclesiastical visual language.</p>
+
+            <h4>Historiography</h4>
+            <p>Political fragmentation and rural economies favor pragmatic dress. The synthesis of Roman and Germanic methods sets the stage for later medieval tailoring developments.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=early+medieval+fashion" target="_blank" rel="noopener">Image search — Early Medieval Europe</a></div>
+          </div>
+        </details>
       </div>
-    </details>
+    </section>
 
-    <!-- PART 2 -->
-    <h2 class="part-header">MEDIEVAL & EARLY MODERN EUROPE</h2>
-    <p class="part-summary">From ecclesiastical codes to secular court display; tailoring develops</p>
-
-    <details>
-      <summary>Early Medieval (c. 500–1000)</summary>
-      <div class="era-content">
-        <p><strong>Silhouettes & Garments:</strong> Tunics, mantles, leggings; layered practical dress influenced by climate.</p>
-        <p><strong>Materials & Textiles:</strong> Wool and linen widespread; silks as imports through Byzantium.</p>
-        <p><strong>Accessories & Symbolism:</strong> Brooches, clasps, and jewelry marking tribal affiliation and rank.</p>
-        <p><strong>Historiography:</strong> Often termed “Dark Ages” (outdated); instead, rich regional textile cultures.</p>
-        <p><strong>Legacy Echoes:</strong> Revivalist medievalism in Gothic and Pre-Raphaelite fashion imagery.</p>
+    <!-- ========== PART: HIGH MEDIEVAL → RENAISSANCE ========== -->
+    <section class="part" aria-labelledby="part-medieval">
+      <div class="part-top" id="part-medieval">
+        <div class="part-title">HIGH MEDIEVAL → RENAISSANCE</div>
+        <div class="part-summary">Tailoring, court display, and the emergence of fashion as political theater</div>
       </div>
-    </details>
-  </main>
+
+      <div class="eras">
+        <!-- High Medieval -->
+        <details class="era">
+          <summary class="era">High Medieval Europe (c. 1000 – 1300)</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Urban revival and courtly culture accelerate differentiation of dress by status; sumptuary controls appear and embroidery/ornament flourish.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Men: elongated tunics, fitted sleeves; Women: long gowns with surcotes and mantles; layering becomes visible and codified.</p>
+
+            <h4>Materials & Techniques</h4>
+            <p>Wool, linen; imported silk in elite circles. Embroidered bands and woven patterned borders are common for status display.</p>
+
+            <h4>Signifiers & Accessories</h4>
+            <p>Veils, wimples, chaperons, belts with decoration, early pointed footwear.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=high+medieval+fashion" target="_blank" rel="noopener">Image search — High Medieval</a></div>
+          </div>
+        </details>
+
+        <!-- Late Medieval -->
+        <details class="era">
+          <summary class="era">Late Medieval / Gothic (c. 1300 – 1500)</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Powerful courts (Burgundy, Italian city-states) drive lavish display; true tailoring becomes widely practiced with fitted doublets and hose.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Men: doublets, hose, houppelande; Women: fitted bodices and conical hennins. Elongated lines and intricate construction define the era.</p>
+
+            <h4>Materials & Techniques</h4>
+            <p>Silks, velvets, brocades import-dominated for elites; fur linings and elaborate embroideries.</p>
+
+            <h4>Signifiers & Accessories</h4>
+            <p>Hennins, poulaines (pointed shoes), heraldic panels, jeweled belts.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=late+medieval+fashion" target="_blank" rel="noopener">Image search — Late Medieval</a></div>
+          </div>
+        </details>
+
+        <!-- Renaissance -->
+        <details class="era" open>
+          <summary class="era">Renaissance (c. 1400 – 1600)</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Humanism, commerce, and artistic patronage produce highly constructed courtly fashions—clothing becomes a deliberate art form and a diplomatic tool.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Women: fitted bodices, full skirts supported by farthingales; Men: doublets, trunk hose, cloaks. Slashing and paning show contrasting fabrics; detachable sleeves are common.</p>
+
+            <h4>Materials & Techniques</h4>
+            <p>Italian silks, brocades, velvet; gold thread embroidery; lace-making begins to appear. Tailoring becomes increasingly sophisticated with curved seams and padding.</p>
+
+            <h4>Signifiers & Accessories</h4>
+            <p>Ruffs start to appear late; hats, jeweled belts, pearls, and other ornaments as status signals.</p>
+
+            <h4>Historiography</h4>
+            <p>Wealth from trade and mercantile expansion funds showy court dress; classical references (antique motifs) are part of a cultural program of the elite.</p>
+
+            <h4>Legacy</h4>
+            <p>Tailoring, seasonal change, and the fashion-as-spectacle model grow from Renaissance courts; couture and atelier ideas have a conceptual ancestor here.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=renaissance+fashion" target="_blank" rel="noopener">Image search — Renaissance</a></div>
+          </div>
+        </details>
+
+        <!-- Baroque -->
+        <details class="era">
+          <summary class="era">Baroque (c. 1600 – 1700) — Context</summary>
+          <div class="era-body">
+            <h4>Overview</h4>
+            <p>Baroque theatricality transitions into full court spectacle—Louis XIV’s France becomes the fashion epicenter, setting stage for 18th-century court codes.</p>
+
+            <h4>Silhouettes & Styling</h4>
+            <p>Men: evolving three-piece prototype (coat/waistcoat/breeches); Women: structured bodices, fuller skirts, early pannier experiments.</p>
+
+            <h4>Historiography</h4>
+            <p>Monarchical absolutism and the politics of display used fashion to maintain social order. Baroque sets up the later Rococo excess and the political reaction against it.</p>
+
+            <div><a class="imglink" href="https://www.google.com/search?tbm=isch&q=baroque+fashion" target="_blank" rel="noopener">Image search — Baroque</a></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </div>
 </body>
 </html>
