@@ -24,30 +24,40 @@
       font-weight: 700;
       color: #111;
     }
+    main {
+      max-width: 900px;   /* keeps content contained */
+      margin: 2rem auto;  /* centers it */
+      padding: 0 1.5rem;  /* inner padding */
+    }
     .part-header {
       font-size: 1.8rem;
-      background: #e0e0e0; /* light chic grey */
+      background: #e0e0e0; /* chic light grey */
       padding: 1rem;
-      margin: 0;
+      margin: 2rem 0 0 0;
       border-top: 2px solid #ccc;
       border-bottom: 2px solid #ccc;
       font-weight: 700;
       letter-spacing: 0.05em;
+      text-transform: uppercase; /* ALL CAPS */
     }
     .part-summary {
       padding: 0.8rem 1rem;
       font-style: italic;
-      background: #f5f5f5;
-      margin: 0;
+      background: #f5f5f5; /* lighter grey than header */
+      margin: 0 0 1rem 0;
       border-bottom: 1px solid #ddd;
     }
     details {
-      margin: 0;
-      border-bottom: 1px solid #ddd;
+      margin: 0 0 1rem 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     summary {
       cursor: pointer;
-      padding: 1rem;
+      padding: 1rem 1.2rem;
       font-size: 1.2rem;
       font-weight: 600;
       background: #444; /* gunmetal grey */
@@ -69,46 +79,47 @@
     <h1>FASHION ATLAS</h1>
   </header>
 
-  <!-- PART 1 -->
-  <h2 class="part-header">PRE-MODERN / ANTIQUITY</h2>
-  <p class="part-summary">Core systems of drape, civic dress, and early tailoring</p>
+  <main>
+    <!-- PART 1 -->
+    <h2 class="part-header">PRE-MODERN / ANTIQUITY</h2>
+    <p class="part-summary">Core systems of drape, civic dress, and early tailoring</p>
 
-  <details>
-    <summary>Ancient Egypt (c. 3000 BCE – 300 BCE)</summary>
-    <div class="era-content">
-      <p><strong>Silhouettes & Garments:</strong> Kalasiris sheath dresses for women; pleated linen kilts (shendyt) for men; wrapped and belted styles as signifiers of class.</p>
-      <p><strong>Materials & Textiles:</strong> Fine, sheer linen (status indicated by fineness and whiteness); gold thread for elite use.</p>
-      <p><strong>Accessories & Symbolism:</strong> Wigs, broad beaded collars (wesekh), kohl-rimmed eyes, symbolic crowns (Atef, Nemes).</p>
-      <p><strong>Historiography:</strong> Dress tied to religious and cosmic order (ma’at); nudity coded as innocence vs. luxury.</p>
-      <p><strong>Legacy Echoes:</strong> Sheer white columnar dresses (20th c. couture); Art Deco revival of Egyptian motifs post-Tutankhamun discovery (1920s).</p>
-    </div>
-  </details>
+    <details>
+      <summary>Ancient Egypt (c. 3000 BCE – 300 BCE)</summary>
+      <div class="era-content">
+        <p><strong>Silhouettes & Garments:</strong> Kalasiris sheath dresses for women; pleated linen kilts (shendyt) for men; wrapped and belted styles as signifiers of class.</p>
+        <p><strong>Materials & Textiles:</strong> Fine, sheer linen (status indicated by fineness and whiteness); gold thread for elite use.</p>
+        <p><strong>Accessories & Symbolism:</strong> Wigs, broad beaded collars (wesekh), kohl-rimmed eyes, symbolic crowns (Atef, Nemes).</p>
+        <p><strong>Historiography:</strong> Dress tied to religious and cosmic order (ma’at); nudity coded as innocence vs. luxury.</p>
+        <p><strong>Legacy Echoes:</strong> Sheer white columnar dresses (20th c. couture); Art Deco revival of Egyptian motifs post-Tutankhamun discovery (1920s).</p>
+      </div>
+    </details>
 
-  <details>
-    <summary>Ancient Greece (c. 1200 BCE – 146 BCE)</summary>
-    <div class="era-content">
-      <p><strong>Silhouettes & Garments:</strong> Draped chitons (wool or linen), peplos, himation cloaks; modular and gender-fluid in cut.</p>
-      <p><strong>Materials & Textiles:</strong> Wool dominant; linen, later imported silk for elites.</p>
-      <p><strong>Accessories & Symbolism:</strong> Laurel wreaths, belts to alter silhouette; sandals with straps up the calf.</p>
-      <p><strong>Historiography:</strong> Classical ideal of proportion → Renaissance through Neoclassicism.</p>
-      <p><strong>Legacy Echoes:</strong> Bias-cut gowns (Vionnet); Olympic ceremonial dress; minimalist drape aesthetics in modernism.</p>
-    </div>
-  </details>
+    <details>
+      <summary>Ancient Greece (c. 1200 BCE – 146 BCE)</summary>
+      <div class="era-content">
+        <p><strong>Silhouettes & Garments:</strong> Draped chitons (wool or linen), peplos, himation cloaks; modular and gender-fluid in cut.</p>
+        <p><strong>Materials & Textiles:</strong> Wool dominant; linen, later imported silk for elites.</p>
+        <p><strong>Accessories & Symbolism:</strong> Laurel wreaths, belts to alter silhouette; sandals with straps up the calf.</p>
+        <p><strong>Historiography:</strong> Classical ideal of proportion → Renaissance through Neoclassicism.</p>
+        <p><strong>Legacy Echoes:</strong> Bias-cut gowns (Vionnet); Olympic ceremonial dress; minimalist drape aesthetics in modernism.</p>
+      </div>
+    </details>
 
-  <!-- PART 2 -->
-  <h2 class="part-header">MEDIEVAL & EARLY MODERN EUROPE</h2>
-  <p class="part-summary">From ecclesiastical codes to secular court display; tailoring develops</p>
+    <!-- PART 2 -->
+    <h2 class="part-header">MEDIEVAL & EARLY MODERN EUROPE</h2>
+    <p class="part-summary">From ecclesiastical codes to secular court display; tailoring develops</p>
 
-  <details>
-    <summary>Early Medieval (c. 500–1000)</summary>
-    <div class="era-content">
-      <p><strong>Silhouettes & Garments:</strong> Tunics, mantles, leggings; layered practical dress influenced by climate.</p>
-      <p><strong>Materials & Textiles:</strong> Wool and linen widespread; silks as imports through Byzantium.</p>
-      <p><strong>Accessories & Symbolism:</strong> Brooches, clasps, and jewelry marking tribal affiliation and rank.</p>
-      <p><strong>Historiography:</strong> Often termed “Dark Ages” (outdated); instead, rich regional textile cultures.</p>
-      <p><strong>Legacy Echoes:</strong> Revivalist medievalism in Gothic and Pre-Raphaelite fashion imagery.</p>
-    </div>
-  </details>
-
+    <details>
+      <summary>Early Medieval (c. 500–1000)</summary>
+      <div class="era-content">
+        <p><strong>Silhouettes & Garments:</strong> Tunics, mantles, leggings; layered practical dress influenced by climate.</p>
+        <p><strong>Materials & Textiles:</strong> Wool and linen widespread; silks as imports through Byzantium.</p>
+        <p><strong>Accessories & Symbolism:</strong> Brooches, clasps, and jewelry marking tribal affiliation and rank.</p>
+        <p><strong>Historiography:</strong> Often termed “Dark Ages” (outdated); instead, rich regional textile cultures.</p>
+        <p><strong>Legacy Echoes:</strong> Revivalist medievalism in Gothic and Pre-Raphaelite fashion imagery.</p>
+      </div>
+    </details>
+  </main>
 </body>
 </html>
